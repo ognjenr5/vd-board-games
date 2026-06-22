@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalji igre — Pijun</title>
+
+  <!-- U pravom projektu koristi vendorovanu kopiju (offline odbrana) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+
+  <style>
+    body { background: #f6f7f9; }
+    .game-img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+    .thumb {
+      width: 72px; height: 72px; object-fit: cover;
+      cursor: pointer; border: 2px solid transparent; border-radius: .5rem;
+      transition: border-color .15s;
+    }
+    .thumb.active, .thumb:hover { border-color: #0d6efd; }
+
+    /* Prikaz zvezdica (read-only) */
+    .stars { display: inline-flex; gap: 2px; font-size: 1.15rem; line-height: 1; color: #d7d7d7; }
+    .stars .on { color: #f5a623; }
+
+    /* Interaktivni unos ocene */
+    .star-input { display: inline-flex; gap: 4px; font-size: 1.9rem; line-height: 1; cursor: pointer; }
+    .star-input span { color: #d7d7d7; transition: color .1s; user-select: none; }
+    .star-input span.hl { color: #f5a623; }
+
+    .meta-list dt { color: #6c757d; font-weight: 500; }
+    .meta-list dd { font-weight: 600; }
+    .review-card { border: 1px solid #e9ecef; border-radius: .75rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Mini header sa brojačem korpe (kod tebe je to navbar iz layout-a) -->
+  <nav class="navbar navbar-light bg-white border-bottom mb-4">
+    <div class="container">
+      <span class="navbar-brand fw-bold">Pijun</span>
+      <span class="position-relative">
+        🛒 Korpa
+        <span id="cartBadge" class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+      </span>
+    </div>
+  </nav>
+
+  <main class="container pb-5">
+
+    <!-- ========== PRIKAZ IGRE ========== -->
+    <div class="row g-4">
+      <!-- Galerija slika -->
+      <div class="col-lg-6">
+        <img id="mainImage" class="game-img rounded shadow-sm mb-3" alt="">
+        <div id="thumbs" class="d-flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- Osnovni podaci -->
+      <div class="col-lg-6">
+        <h1 id="gameName" class="h2 mb-2"></h1>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span id="avgStars" class="stars"></span>
+          <span id="avgText" class="text-muted small"></span>
+        </div>
+
+        <p id="gameDesc" class="text-secondary"></p>
+
+        <dl class="row meta-list mb-4">
+          <dt class="col-6">Broj igrača</dt>      <dd id="mPlayers"  class="col-6 text-end"></dd>
+          <dt class="col-6">Preporučeni uzrast</dt><dd id="mAge"      class="col-6 text-end"></dd>
+          <dt class="col-6">Trajanje partije</dt> <dd id="mDuration" class="col-6 text-end"></dd>
+          <dt class="col-6">Cena</dt>             <dd id="mPrice"    class="col-6 text-end fs-5 text-primary"></dd>
+        </dl>
+
+        <button id="addToCart" class="btn btn-primary btn-lg w-100">Dodaj u korpu</button>
+        <div id="cartMsg" class="text-success small mt-2" style="min-height:1.2em;"></div>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <!-- ========== OCENE I KOMENTARI ========== -->
+    <div class="row">
+      <div class="col-lg-8">
+        <h2 class="h4 mb-3">Ocene i komentari</h2>
+        <p id="summary" class="text-muted mb-4"></p>
+
+        <!-- Forma za novu ocenu/komentar -->
+        <div class="card review-card mb-4">
+          <div class="card-body">
+            <label class="form-label mb-1">Vaša ocena</label>
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div id="starInput" class="star-input" role="radiogroup" aria-label="Ocena">
+                <span data-v="1" role="radio" tabindex="0">★</span>
+                <span data-v="2" role="radio" tabindex="0">★</span>
+                <span data-v="3" role="radio" tabindex="0">★</span>
+                <span data-v="4" role="radio" tabindex="0">★</span>
+                <span data-v="5" role="radio" tabindex="0">★</span>
+              </div>
+              <span id="ratingLabel" class="text-muted small"></span>
+            </div>
+
+            <input id="author" class="form-control mb-2" placeholder="Vaše ime (opciono)">
+            <textarea id="commentText" class="form-control mb-3" rows="3"
+                      placeholder="Napišite komentar (opciono)"></textarea>
+
+            <div class="d-flex align-items-center gap-3">
+              <button id="submitReview" class="btn btn-success">Pošalji</button>
+              <span id="formError" class="text-danger small"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista komentara -->
+        <div id="reviewList"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script>
+  /* =========================================================================
+     SKLADIŠTE — koristi pravi localStorage kad je dostupan.
+     Fallback (in-memory) postoji samo da preview radi u okruženjima koja
+     blokiraju localStorage. U tvom Pijun projektu radi nativni localStorage.
+     ========================================================================= */
+  const storage = (() => {
+    try {
+      localStorage.setItem('__t', '1'); localStorage.removeItem('__t');
+      return localStorage;
+    } catch (e) {
+      const mem = {};
+      return {
+        getItem: k => (k in mem ? mem[k] : null),
+        setItem: (k, v) => { mem[k] = String(v); },
+        removeItem: k => { delete mem[k]; }
+      };
+    }
+  })();
+
+  const REVIEWS_KEY = 'pijun_reviews';   // sve ocene/komentari, po id-u igre
+  const CART_KEY    = 'pijun_cart';      // korpa
+
+  /* =========================================================================
+     PODACI O IGRI
+     U pravom projektu ovo učitaj iz svoje liste igara po ?id= iz URL-a:
+         const id = new URLSearchParams(location.search).get('id');
+         const game = igre.find(g => g.id === id);
+     Slike zameni stvarnim putanjama, npr. 'slike/catan-1.jpg'.
+     ========================================================================= */
+  function ph(label, color) { // privremeni SVG placeholder za slike
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='600' height='450'>
+      <rect width='100%' height='100%' fill='${color}'/>
+      <text x='50%' y='50%' font-family='sans-serif' font-size='30' fill='#fff'
+        text-anchor='middle' dominant-baseline='middle'>${label}</text></svg>`;
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+  }
+
+  const game = {
+    id: 'catan',
+    name: 'Catan',
+    description: 'Strateška igra trgovine i izgradnje naselja na ostrvu Catan. ' +
+                 'Skupljajte sirovine, gradite puteve i nadmudrite protivnike.',
+    minPlayers: 3,
+    maxPlayers: 4,
+    minAge: 10,
+    durationMin: 60,
+    durationMax: 90,
+    price: 3499,                 // u RSD
+    images: [
+      ph('Catan 1', '#2c5f2d'),
+      ph('Catan 2', '#3d5a80'),
+      ph('Catan 3', '#9c6644')
+    ]
+  };
+
+  /* ===================== POMOĆNE: OCENE ===================== */
+  function loadAllReviews() {
+    try { return JSON.parse(storage.getItem(REVIEWS_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function getReviews(id) { return loadAllReviews()[id] || []; }
+  function saveReview(id, review) {
+    const all = loadAllReviews();
+    (all[id] = all[id] || []).push(review);
+    storage.setItem(REVIEWS_KEY, JSON.stringify(all));
+  }
+  function averageRating(id) {
+    const r = getReviews(id).map(x => x.rating).filter(n => n >= 1);
+    return r.length ? r.reduce((a, b) => a + b, 0) / r.length : null;
+  }
+
+  /* ===================== POMOĆNE: PRIKAZ ===================== */
+  function starsHTML(value) { // value 0..5
+    let h = '';
+    for (let i = 1; i <= 5; i++)
+      h += `<span class="${i <= Math.round(value) ? 'on' : ''}">★</span>`;
+    return h;
+  }
+  const fmtPrice = n => n.toLocaleString('sr-RS') + ' RSD';
+  const fmtRange = (a, b, suf = '') => (a === b ? a : a + '–' + b) + suf;
+
+  /* ===================== RENDEROVANJE IGRE ===================== */
+  function renderGame() {
+    document.getElementById('gameName').textContent = game.name;
+    document.getElementById('gameDesc').textContent = game.description;
+    document.getElementById('mPlayers').textContent  = fmtRange(game.minPlayers, game.maxPlayers);
+    document.getElementById('mAge').textContent       = game.minAge + '+';
+    document.getElementById('mDuration').textContent  = fmtRange(game.durationMin, game.durationMax, ' min');
+    document.getElementById('mPrice').textContent     = fmtPrice(game.price);
+
+    // glavna slika + thumbnail-ovi
+    const main = document.getElementById('mainImage');
+    main.src = game.images[0];
+    const thumbs = document.getElementById('thumbs');
+    thumbs.innerHTML = '';
+    game.images.forEach((src, i) => {
+      const t = document.createElement('img');
+      t.src = src; t.className = 'thumb' + (i === 0 ? ' active' : '');
+      t.alt = game.name + ' slika ' + (i + 1);
+      t.addEventListener('click', () => {
+        main.src = src;
+        thumbs.querySelectorAll('.thumb').forEach(el => el.classList.remove('active'));
+        t.classList.add('active');
+      });
+      thumbs.appendChild(t);
+    });
+  }
+
+  /* ===================== RENDEROVANJE OCENA ===================== */
+  function renderReviews() {
+    const reviews = getReviews(game.id);
+    const avg = averageRating(game.id);
+    const rated = reviews.filter(r => r.rating >= 1).length;
+
+    // prosek pored naslova
+    document.getElementById('avgStars').innerHTML = starsHTML(avg || 0);
+    document.getElementById('avgText').textContent =
+      avg ? `${avg.toFixed(1)} / 5 (${rated})` : 'Još nema ocena';
+
+    // rezime
+    document.getElementById('summary').textContent =
+      avg ? `Prosečna ocena: ${avg.toFixed(1)} od 5 — na osnovu ${rated} ocena, ${reviews.length} komentara.`
+          : 'Budite prvi koji će oceniti ovu igru.';
+
+    // lista (najnoviji prvi)
+    const list = document.getElementById('reviewList');
+    list.innerHTML = '';
+    if (!reviews.length) {
+      list.innerHTML = '<p class="text-muted">Nema komentara.</p>';
+      return;
+    }
+    reviews.slice().reverse().forEach(r => {
+      const date = new Date(r.date).toLocaleDateString('sr-RS');
+      const card = document.createElement('div');
+      card.className = 'card review-card mb-2';
+      card.innerHTML = `
+        <div class="card-body py-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <strong>${escapeHTML(r.author || 'Anoniman')}</strong>
+            <small class="text-muted">${date}</small>
+          </div>
+          ${r.rating ? `<div class="stars mb-2">${starsHTML(r.rating)}</div>` : ''}
+          ${r.comment ? `<p class="mb-0">${escapeHTML(r.comment)}</p>` : ''}
+        </div>`;
+      list.appendChild(card);
+    });
+  }
+
+  // sprečava ubacivanje HTML-a iz korisničkog unosa
+  function escapeHTML(s) {
+    return s.replace(/[&<>"']/g, c =>
+      ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  }
+
+  /* ===================== UNOS OCENE (zvezdice) ===================== */
+  let selectedRating = 0;
+  const starInput = document.getElementById('starInput');
+  const stars = [...starInput.querySelectorAll('span')];
+  const ratingLabel = document.getElementById('ratingLabel');
+
+  function paintStars(n) {
+    stars.forEach((s, i) => s.classList.toggle('hl', i < n));
+  }
+  stars.forEach(s => {
+    const v = +s.dataset.v;
+    s.addEventListener('mouseenter', () => paintStars(v));
+    s.addEventListener('click', () => {
+      selectedRating = v;
+      ratingLabel.textContent = v + ' / 5';
+    });
+    s.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); s.click(); }
+    });
+  });
+  starInput.addEventListener('mouseleave', () => paintStars(selectedRating));
+
+  /* ===================== SLANJE OCENE/KOMENTARA ===================== */
+  document.getElementById('submitReview').addEventListener('click', () => {
+    const author  = document.getElementById('author').value.trim();
+    const comment = document.getElementById('commentText').value.trim();
+    const err = document.getElementById('formError');
+
+    if (!selectedRating && !comment) {
+      err.textContent = 'Unesite ocenu ili napišite komentar.';
+      return;
+    }
+    err.textContent = '';
+
+    saveReview(game.id, {
+      rating: selectedRating || 0,
+      comment,
+      author,
+      date: new Date().toISOString()
+    });
+
+    // reset forme
+    selectedRating = 0;
+    paintStars(0);
+    ratingLabel.textContent = '';
+    document.getElementById('author').value = '';
+    document.getElementById('commentText').value = '';
+
+    renderReviews();
+  });
+
+  /* ===================== KORPA ===================== */
+  function loadCart() {
+    try { return JSON.parse(storage.getItem(CART_KEY)) || []; }
+    catch (e) { return []; }
+  }
+  function updateCartBadge() {
+    const count = loadCart().reduce((sum, i) => sum + i.qty, 0);
+    document.getElementById('cartBadge').textContent = count;
+  }
+  document.getElementById('addToCart').addEventListener('click', () => {
+    const cart = loadCart();
+    const item = cart.find(i => i.id === game.id);
+    if (item) item.qty += 1;
+    else cart.push({ id: game.id, name: game.name, price: game.price, qty: 1 });
+    storage.setItem(CART_KEY, JSON.stringify(cart));
+    updateCartBadge();
+    document.getElementById('cartMsg').textContent = '✓ Dodato u korpu';
+  });
+
+  /* ===================== INIT ===================== */
+  renderGame();
+  renderReviews();
+  updateCartBadge();
+  </script>
+</body>
+</html>

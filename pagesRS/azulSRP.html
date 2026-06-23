@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="sr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalji igre — Azul</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="gameSRP.css">
+</head>
+
+<body>
+
+  <div id="gameData"
+    data-id="azul"
+    data-name="Azul"
+    data-description="Apstraktna igra slaganja plocica u kojoj igraci biraju sarene plocice da ukrase zidove Kraljevske palate u Evori. Planirajte pazljivo da osvojite najvise poena."
+    data-min-players="2"
+    data-max-players="4"
+    data-min-age="8"
+    data-duration-min="30"
+    data-duration-max="45"
+    data-price="3999"
+    data-images="../img/azul-1.jpg"></div>
+
+  <nav class="navbar navbar-light bg-white border-bottom mb-4">
+    <div class="container">
+      <span class="navbar-brand fw-bold">Azul</span>
+      <span class="position-relative">
+        🛒 Korpa
+        <span id="cartBadge"
+          class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+      </span>
+    </div>
+  </nav>
+
+  <main class="container pb-5">
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <img id="mainImage" class="game-img rounded shadow-sm mb-3" alt="">
+        <div id="thumbs" class="d-flex flex-wrap gap-2"></div>
+      </div>
+
+      <div class="col-lg-6">
+        <h1 id="gameName" class="h2 mb-2"></h1>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span id="avgStars" class="stars"></span>
+          <span id="avgText" class="text-muted small"></span>
+        </div>
+
+        <p id="gameDesc" class="text-secondary"></p>
+
+        <dl class="row meta-list mb-4">
+          <dt class="col-6">Broj igraca</dt>
+          <dd id="mPlayers" class="col-6 text-end"></dd>
+          <dt class="col-6">Preporuceni uzrast</dt>
+          <dd id="mAge" class="col-6 text-end"></dd>
+          <dt class="col-6">Trajanje partije</dt>
+          <dd id="mDuration" class="col-6 text-end"></dd>
+          <dt class="col-6">Cena</dt>
+          <dd id="mPrice" class="col-6 text-end fs-5 text-primary"></dd>
+        </dl>
+
+        <button id="addToCart" class="btn btn-primary btn-lg w-100">Dodaj u korpu</button>
+        <div id="cartMsg" class="text-success small mt-2" style="min-height:1.2em;"></div>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row">
+      <div class="col-lg-8">
+        <h2 class="h4 mb-3">Ocene i komentari</h2>
+        <p id="summary" class="text-muted mb-4"></p>
+
+        <div class="card review-card mb-4">
+          <div class="card-body">
+            <label class="form-label mb-1">Vasa ocena</label>
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div id="starInput" class="star-input" role="radiogroup" aria-label="Vasa ocena">
+                <span data-v="1" role="radio" tabindex="0">★</span>
+                <span data-v="2" role="radio" tabindex="0">★</span>
+                <span data-v="3" role="radio" tabindex="0">★</span>
+                <span data-v="4" role="radio" tabindex="0">★</span>
+                <span data-v="5" role="radio" tabindex="0">★</span>
+              </div>
+              <span id="ratingLabel" class="text-muted small"></span>
+            </div>
+
+            <input id="author" class="form-control mb-2" placeholder="Vase ime (opciono)">
+            <textarea id="commentText" class="form-control mb-3" rows="3"
+              placeholder="Napisite komentar (opciono)"></textarea>
+
+            <div class="d-flex align-items-center gap-3">
+              <button id="submitReview" class="btn btn-success">Posalji</button>
+              <span id="formError" class="text-danger small"></span>
+            </div>
+          </div>
+        </div>
+
+        <div id="reviewList"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="gameSRP.js"></script>
+</body>
+
+</html>

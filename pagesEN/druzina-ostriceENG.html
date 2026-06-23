@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game details — Blade Fellowship</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="gameENG.css">
+</head>
+
+<body>
+
+  <div id="gameData"
+    data-id="druzina-ostrice"
+    data-name="Blade Fellowship"
+    data-description="A cooperative adventure game where a fellowship of heroes journeys across a perilous land, battling foes and uncovering secrets together."
+    data-min-players="1"
+    data-max-players="5"
+    data-min-age="12"
+    data-duration-min="60"
+    data-duration-max="120"
+    data-price="4599"
+    data-images="../img/druzina-ostrice-1.jpg"></div>
+
+  <nav class="navbar navbar-light bg-white border-bottom mb-4">
+    <div class="container">
+      <span class="navbar-brand fw-bold">Blade Fellowship</span>
+      <span class="position-relative">
+        🛒 Cart
+        <span id="cartBadge"
+          class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+      </span>
+    </div>
+  </nav>
+
+  <main class="container pb-5">
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <img id="mainImage" class="game-img rounded shadow-sm mb-3" alt="">
+        <div id="thumbs" class="d-flex flex-wrap gap-2"></div>
+      </div>
+
+      <div class="col-lg-6">
+        <h1 id="gameName" class="h2 mb-2"></h1>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span id="avgStars" class="stars"></span>
+          <span id="avgText" class="text-muted small"></span>
+        </div>
+
+        <p id="gameDesc" class="text-secondary"></p>
+
+        <dl class="row meta-list mb-4">
+          <dt class="col-6">Players</dt>
+          <dd id="mPlayers" class="col-6 text-end"></dd>
+          <dt class="col-6">Recommended age</dt>
+          <dd id="mAge" class="col-6 text-end"></dd>
+          <dt class="col-6">Play time</dt>
+          <dd id="mDuration" class="col-6 text-end"></dd>
+          <dt class="col-6">Price</dt>
+          <dd id="mPrice" class="col-6 text-end fs-5 text-primary"></dd>
+        </dl>
+
+        <button id="addToCart" class="btn btn-primary btn-lg w-100">Add to cart</button>
+        <div id="cartMsg" class="text-success small mt-2" style="min-height:1.2em;"></div>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row">
+      <div class="col-lg-8">
+        <h2 class="h4 mb-3">Ratings and comments</h2>
+        <p id="summary" class="text-muted mb-4"></p>
+
+        <div class="card review-card mb-4">
+          <div class="card-body">
+            <label class="form-label mb-1">Your rating</label>
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div id="starInput" class="star-input" role="radiogroup" aria-label="Your rating">
+                <span data-v="1" role="radio" tabindex="0">★</span>
+                <span data-v="2" role="radio" tabindex="0">★</span>
+                <span data-v="3" role="radio" tabindex="0">★</span>
+                <span data-v="4" role="radio" tabindex="0">★</span>
+                <span data-v="5" role="radio" tabindex="0">★</span>
+              </div>
+              <span id="ratingLabel" class="text-muted small"></span>
+            </div>
+
+            <input id="author" class="form-control mb-2" placeholder="Your name (optional)">
+            <textarea id="commentText" class="form-control mb-3" rows="3"
+              placeholder="Write a comment (optional)"></textarea>
+
+            <div class="d-flex align-items-center gap-3">
+              <button id="submitReview" class="btn btn-success">Submit</button>
+              <span id="formError" class="text-danger small"></span>
+            </div>
+          </div>
+        </div>
+
+        <div id="reviewList"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="gameENG.js"></script>
+</body>
+
+</html>

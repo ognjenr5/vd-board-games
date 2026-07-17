@@ -14,3 +14,4 @@ body { background: #f6f7f9; }
 .meta-list dt { color: #6c757d; font-weight: 500; }
 .meta-list dd { font-weight: 600; }
 .review-card { border: 1px solid #e9ecef; border-radius: .75rem; }
+#demo .carousel-control-prev-icon, #demo .carousel-control-next-icon{filter: invert(1);}

@@ -38,8 +38,7 @@ const game = {
   minAge: +root.dataset.minAge,
   durationMin: +root.dataset.durationMin,
   durationMax: +root.dataset.durationMax,
-  price: +root.dataset.price,
-  images: root.dataset.images.split(',').map(s => s.trim()).filter(Boolean)
+  price: +root.dataset.price
 };
 
 function loadAllReviews() {
@@ -73,23 +72,6 @@ function renderGame() {
   document.getElementById('mAge').textContent = game.minAge + '+';
   document.getElementById('mDuration').textContent = fmtRange(game.durationMin, game.durationMax, LABELS.minSuffix);
   document.getElementById('mPrice').textContent = fmtPrice(game.price);
-
-  const main = document.getElementById('mainImage');
-  main.src = game.images[0];
-  main.alt = game.name;
-  const thumbs = document.getElementById('thumbs');
-  thumbs.innerHTML = '';
-  game.images.forEach((src, i) => {
-    const t = document.createElement('img');
-    t.src = src; t.className = 'thumb' + (i === 0 ? ' active' : '');
-    t.alt = game.name + ' ' + (i + 1);
-    t.addEventListener('click', () => {
-      main.src = src;
-      thumbs.querySelectorAll('.thumb').forEach(el => el.classList.remove('active'));
-      t.classList.add('active');
-    });
-    thumbs.appendChild(t);
-  });
 }
 
 function renderReviews() {

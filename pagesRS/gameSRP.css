@@ -1,11 +1,5 @@
 body { background: #f6f7f9; }
-.game-img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
-.thumb {
-  width: 72px; height: 72px; object-fit: cover;
-  cursor: pointer; border: 2px solid transparent; border-radius: .5rem;
-  transition: border-color .15s;
-}
-.thumb.active, .thumb:hover { border-color: #0d6efd; }
+
 .stars { display: inline-flex; gap: 2px; font-size: 1.15rem; line-height: 1; color: #d7d7d7; }
 .stars .on { color: #f5a623; }
 .star-input { display: inline-flex; gap: 4px; font-size: 1.9rem; line-height: 1; cursor: pointer; }

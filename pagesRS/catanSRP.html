@@ -12,17 +12,10 @@
 
 <body>
 
-  <div id="gameData"
-    data-id="catan"
-    data-name="Catan"
+  <div id="gameData" data-id="catan" data-name="Catan"
     data-description="Strateska igra trgovine i izgradnje naselja na ostrvu Catan. Skupljajte sirovine, gradite puteve i gradove i nadmudrite protivnike."
-    data-min-players="3"
-    data-max-players="4"
-    data-min-age="10"
-    data-duration-min="60"
-    data-duration-max="90"
-    data-price="3499"
-    data-images="../img/catan-1.jpg"></div>
+    data-min-players="3" data-max-players="4" data-min-age="10" data-duration-min="60" data-duration-max="90"
+    data-price="3499" data-images="../img/catan-1.jpg"></div>
 
   <nav class="navbar navbar-light bg-white border-bottom mb-4">
     <div class="container">
@@ -39,8 +32,28 @@
 
     <div class="row g-4">
       <div class="col-lg-6">
-        <img id="mainImage" class="game-img rounded shadow-sm mb-3" alt="">
-        <div id="thumbs" class="d-flex flex-wrap gap-2"></div>
+        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+          </div>
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="../img/catan-1.jpg" alt="catan-1" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+              <img src="../img/catan-2.jpg" alt="catan-2" class="d-block w-100">
+            </div>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
       </div>
 
       <div class="col-lg-6">

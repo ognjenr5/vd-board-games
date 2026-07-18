@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalji igre — Sah</title>
+  <title>Detalji igre — Monopol</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="gameSRP.css">
@@ -14,7 +14,7 @@
 
   <nav class="navbar navbar-light bg-white border-bottom mb-4">
     <div class="container">
-      <span class="navbar-brand fw-bold">Sah</span>
+      <span class="navbar-brand fw-bold">Monopol</span>
       <span class="position-relative">
         🛒 Korpa
         <span id="cartBadge"
@@ -35,10 +35,10 @@
 
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="../img/sah-1.jpg" alt="sah-1" class="d-block w-100">
+              <img src="../img/monopol-1.jpg" alt="monopol-1" class="d-block w-100">
             </div>
             <div class="carousel-item">
-              <img src="../img/sah-2.jpg" alt="sah-2" class="d-block w-100">
+              <img src="../img/monopol-2.jpg" alt="monopol-2" class="d-block w-100">
             </div>
           </div>
 
@@ -52,30 +52,30 @@
       </div>
 
       <div class="col-lg-6">
-        <h1 id="gameName" class="h2 mb-2">Sah</h1>
+        <h1 id="gameName" class="h2 mb-2">Monopol</h1>
 
         <div class="d-flex align-items-center gap-2 mb-3">
           <span id="avgStars" class="stars"></span>
           <span id="avgText" class="text-muted small"></span>
         </div>
 
-        <p id="gameDesc" class="text-secondary">Bezvremenska strateska igra za dva igraca.
-          Nadmudrite protivnika i matirajte njegovog kralja na tabli od 64 polja.
+        <p id="gameDesc" class="text-secondary">Klasicna igra kupovine, iznajmljivanja i trgovine nekretninama.
+          Dovedite protivnike do bankrota i postanite najbogatiji igrac da biste pobedili.
         </p>
 
         <dl class="row meta-list mb-4">
           <dt class="col-6">Broj igraca</dt>
-          <dd id="mPlayers" class="col-6 text-end">2</dd>
+          <dd id="mPlayers" class="col-6 text-end">2-6</dd>
           <dt class="col-6">Preporuceni uzrast</dt>
-          <dd id="mAge" class="col-6 text-end">6+</dd>
+          <dd id="mAge" class="col-6 text-end">8+</dd>
           <dt class="col-6">Trajanje partije</dt>
-          <dd id="mDuration" class="col-6 text-end">20-60 min</dd>
+          <dd id="mDuration" class="col-6 text-end">60-180 min</dd>
           <dt class="col-6">Cena</dt>
-          <dd id="mPrice" class="col-6 text-end fs-5 text-primary">1499</dd>
+          <dd id="mPrice" class="col-6 text-end fs-5 text-primary">2999</dd>
         </dl>
 
-        <button id="addToCart" data-id="sah" data-name="Sah" data-price="1499" class="btn btn-primary btn-lg w-100">
-          Dodaj u korpu</button>
+        <button id="addToCart" data-id="monopol" data-name="Monopol" data-price="2999"
+          class="btn btn-primary btn-lg w-100">Dodaj u korpu</button>
         <div id="cartMsg" class="text-success small mt-2" style="min-height:1.2em;"></div>
       </div>
     </div>

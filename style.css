@@ -1,3 +1,8 @@
+:root {
+    --section-even-color: #ecd3d3;
+    --section-odd-color: #dfd0d0;
+}
+
 body {
     background: #f6f7f9;
 }
@@ -85,4 +90,82 @@ body {
 
 .carousel-control-next-icon, .carousel-control-prev-icon {
    filter: invert(1);
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main-section {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    width: fit-content;
+    padding-top: 24px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0px 32px;
+    gap: 36px;
+    flex-wrap: wrap;
+    width: fit-content;
+}
+
+.sales .card,
+.new-games .card {
+    height: 480px;
+    padding: 0px 24px;
+    width: 20rem;
+}
+
+.card img  {
+    padding: 12px 0px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-body .card-text:last-of-type {
+    margin-top: auto;
+    padding-bottom: 12px;
+}
+
+.main-section h3 {
+    padding: 8px;
+}
+
+.section-cont:nth-child(odd) {
+  background-color: var(--section-odd-color);
+}
+
+.section-cont:nth-child(even) {
+  background-color: var(--section-even-color);
+}
+
+.section-cont {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.events .card-container {
+    flex-direction: column;
+}
+
+.badge-img {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    z-index: 1;
+    font-size: 22px;
 }

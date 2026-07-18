@@ -7,15 +7,10 @@
   <title>Game details — Chess</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="gameENG.css">
+  <link rel="stylesheet" href="../pagesRS/gameSRP.css">
 </head>
 
 <body>
-
-  <div id="gameData" data-id="sah" data-name="Chess"
-    data-description="The timeless game of strategy for two players. Outmanoeuvre your opponent and checkmate their king on the 64-square board."
-    data-min-players="2" data-max-players="2" data-min-age="6" data-duration-min="20" data-duration-max="60"
-    data-price="1499"></div>
 
   <nav class="navbar navbar-light bg-white border-bottom mb-4">
     <div class="container">
@@ -57,27 +52,30 @@
       </div>
 
       <div class="col-lg-6">
-        <h1 id="gameName" class="h2 mb-2"></h1>
+        <h1 class="h2 mb-2">Chess</h1>
 
         <div class="d-flex align-items-center gap-2 mb-3">
           <span id="avgStars" class="stars"></span>
           <span id="avgText" class="text-muted small"></span>
         </div>
 
-        <p id="gameDesc" class="text-secondary"></p>
+        <p class="text-secondary">The timeless game of strategy for two players. Outmanoeuvre your opponent and
+          checkmate their king on the 64-square board.</p>
 
         <dl class="row meta-list mb-4">
           <dt class="col-6">Players</dt>
-          <dd id="mPlayers" class="col-6 text-end"></dd>
+          <dd class="col-6 text-end">2</dd>
           <dt class="col-6">Recommended age</dt>
-          <dd id="mAge" class="col-6 text-end"></dd>
+          <dd class="col-6 text-end">6+</dd>
           <dt class="col-6">Play time</dt>
-          <dd id="mDuration" class="col-6 text-end"></dd>
+          <dd class="col-6 text-end">20-60 min</dd>
           <dt class="col-6">Price</dt>
-          <dd id="mPrice" class="col-6 text-end fs-5 text-primary"></dd>
+          <dd class="col-6 text-end fs-5 text-primary">1.499 RSD</dd>
         </dl>
 
-        <button id="addToCart" class="btn btn-primary btn-lg w-100">Add to cart</button>
+        <button id="addToCart" data-id="sah" data-name="Chess" data-price="1499" class="btn btn-primary btn-lg w-100">
+          Add to cart
+        </button>
         <div id="cartMsg" class="text-success small mt-2" style="min-height:1.2em;"></div>
       </div>
     </div>
@@ -87,18 +85,18 @@
     <div class="row">
       <div class="col-lg-8">
         <h2 class="h4 mb-3">Ratings and comments</h2>
-        <p id="summary" class="text-muted mb-4"></p>
+        <p id="summary" class="text-muted mb-4">Loading...</p>
 
         <div class="card review-card mb-4">
           <div class="card-body">
             <label class="form-label mb-1">Your rating</label>
             <div class="d-flex align-items-center gap-3 mb-3">
-              <div id="starInput" class="star-input" role="radiogroup" aria-label="Your rating">
-                <span data-v="1" role="radio" tabindex="0">★</span>
-                <span data-v="2" role="radio" tabindex="0">★</span>
-                <span data-v="3" role="radio" tabindex="0">★</span>
-                <span data-v="4" role="radio" tabindex="0">★</span>
-                <span data-v="5" role="radio" tabindex="0">★</span>
+              <div id="starInput" class="star-input" style="cursor: pointer;">
+                <span data-v="1">★</span>
+                <span data-v="2">★</span>
+                <span data-v="3">★</span>
+                <span data-v="4">★</span>
+                <span data-v="5">★</span>
               </div>
               <span id="ratingLabel" class="text-muted small"></span>
             </div>
@@ -122,7 +120,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
   <script src="../jquery-4.0.0.min.js"></script>
-  <script src="gameENG.js"></script>
+  <script src="../pagesRS/game.js"></script>
 </body>
 
 </html>

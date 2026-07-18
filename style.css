@@ -169,3 +169,13 @@ main {
     z-index: 1;
     font-size: 22px;
 }
+
+.lang-check {
+    display: flex;
+    gap: 4px
+}
+
+.lang-check .form-check {
+    display: flex;
+    justify-content: center;
+}

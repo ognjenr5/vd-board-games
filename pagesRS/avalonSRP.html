@@ -5,20 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalji igre — Avalon</title>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="gameSRP.css">
 </head>
 
 <body>
-  <!--GAME DATA :: id, name, description, min-players,
-   max-players, min-age, duration-min, duration-max, data-price -->
-
-  <div id="gameData" data-id="avalon" data-name="Avalon"
-    data-description="Drustvena igra skrivene lojalnosti smestena na dvoru kralja Artura. Verni sledbenici Artura bore se da poraze Mordredove sluge skrivene medju njima."
-    data-min-players="5" data-max-players="10" data-min-age="13" data-duration-min="30" data-duration-max="45"
-    data-price="2799">
-  </div>
 
   <nav class="navbar navbar-light bg-white border-bottom mb-4">
     <div class="container">
@@ -32,16 +23,14 @@
   </nav>
 
   <main class="container pb-5">
-
     <div class="row g-4">
-      <div class="col-lg-6">
 
+      <div class="col-lg-6">
         <div id="demo" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
             <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
           </div>
-
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img src="../img/avalon-1.jpg" alt="avalon-1" class="d-block w-100">
@@ -50,7 +39,6 @@
               <img src="../img/avalon-2.jpg" alt="avalon-2" class="d-block w-100">
             </div>
           </div>
-
           <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>
           </button>
@@ -58,31 +46,37 @@
             <span class="carousel-control-next-icon"></span>
           </button>
         </div>
-
       </div>
 
       <div class="col-lg-6">
-        <h1 id="gameName" class="h2 mb-2"></h1>
+        <h1 class="h2 mb-2">Avalon</h1>
 
         <div class="d-flex align-items-center gap-2 mb-3">
           <span id="avgStars" class="stars"></span>
           <span id="avgText" class="text-muted small"></span>
         </div>
 
-        <p id="gameDesc" class="text-secondary"></p>
+        <p class="text-secondary">Drustvena igra skrivene lojalnosti smestena na dvoru kralja Artura. Verni sledbenici
+          Artura bore se da poraze Mordredove sluge skrivene medju njima.</p>
 
         <dl class="row meta-list mb-4">
           <dt class="col-6">Broj igraca</dt>
-          <dd id="mPlayers" class="col-6 text-end"></dd>
+          <dd class="col-6 text-end">5-10</dd>
+
           <dt class="col-6">Preporuceni uzrast</dt>
-          <dd id="mAge" class="col-6 text-end"></dd>
+          <dd class="col-6 text-end">13+</dd>
+
           <dt class="col-6">Trajanje partije</dt>
-          <dd id="mDuration" class="col-6 text-end"></dd>
+          <dd class="col-6 text-end">30-45 min</dd>
+
           <dt class="col-6">Cena</dt>
-          <dd id="mPrice" class="col-6 text-end fs-5 text-primary"></dd>
+          <dd class="col-6 text-end fs-5 text-primary">2.799 RSD</dd>
         </dl>
 
-        <button id="addToCart" class="btn btn-primary btn-lg w-100">Dodaj u korpu</button>
+        <button id="addToCart" data-id="avalon" data-name="Avalon" data-price="2799"
+          class="btn btn-primary btn-lg w-100">
+          Dodaj u korpu
+        </button>
         <div id="cartMsg" class="text-success small mt-2" style="min-height:1.2em;"></div>
       </div>
     </div>
@@ -92,18 +86,18 @@
     <div class="row">
       <div class="col-lg-8">
         <h2 class="h4 mb-3">Ocene i komentari</h2>
-        <p id="summary" class="text-muted mb-4"></p>
+        <p id="summary" class="text-muted mb-4">Učitavanje...</p>
 
         <div class="card review-card mb-4">
           <div class="card-body">
             <label class="form-label mb-1">Vasa ocena</label>
             <div class="d-flex align-items-center gap-3 mb-3">
-              <div id="starInput" class="star-input" role="radiogroup" aria-label="Vasa ocena">
-                <span data-v="1" role="radio" tabindex="0">★</span>
-                <span data-v="2" role="radio" tabindex="0">★</span>
-                <span data-v="3" role="radio" tabindex="0">★</span>
-                <span data-v="4" role="radio" tabindex="0">★</span>
-                <span data-v="5" role="radio" tabindex="0">★</span>
+              <div id="starInput" class="star-input" style="cursor: pointer;">
+                <span data-v="1">★</span>
+                <span data-v="2">★</span>
+                <span data-v="3">★</span>
+                <span data-v="4">★</span>
+                <span data-v="5">★</span>
               </div>
               <span id="ratingLabel" class="text-muted small"></span>
             </div>

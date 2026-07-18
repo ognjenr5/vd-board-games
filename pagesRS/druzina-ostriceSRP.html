@@ -12,11 +12,6 @@
 
 <body>
 
-  <div id="gameData" data-id="druzina-ostrice" data-name="Druzina ostrice"
-    data-description="Kooperativna avanturisticka igra u kojoj druzina junaka putuje kroz opasnu zemlju, boreci se sa neprijateljima i otkrivajuci tajne zajedno."
-    data-min-players="1" data-max-players="5" data-min-age="12" data-duration-min="60" data-duration-max="120"
-    data-price="4599"></div>
-
   <nav class="navbar navbar-light bg-white border-bottom mb-4">
     <div class="container">
       <span class="navbar-brand fw-bold">Druzina ostrice</span>
@@ -57,27 +52,32 @@
       </div>
 
       <div class="col-lg-6">
-        <h1 id="gameName" class="h2 mb-2"></h1>
+        <h1 id="gameName" class="h2 mb-2">Druzina ostrice</h1>
 
         <div class="d-flex align-items-center gap-2 mb-3">
           <span id="avgStars" class="stars"></span>
           <span id="avgText" class="text-muted small"></span>
         </div>
 
-        <p id="gameDesc" class="text-secondary"></p>
+        <p id="gameDesc" class="text-secondary">
+          Kooperativna avanturisticka igra u kojoj druzina junaka putuje kroz opasnu zemlju,
+          boreci se sa neprijateljima i otkrivajuci tajne zajedno.
+        </p>
 
         <dl class="row meta-list mb-4">
           <dt class="col-6">Broj igraca</dt>
-          <dd id="mPlayers" class="col-6 text-end"></dd>
+          <dd id="mPlayers" class="col-6 text-end">1-5</dd>
           <dt class="col-6">Preporuceni uzrast</dt>
-          <dd id="mAge" class="col-6 text-end"></dd>
+          <dd id="mAge" class="col-6 text-end">12+</dd>
           <dt class="col-6">Trajanje partije</dt>
-          <dd id="mDuration" class="col-6 text-end"></dd>
+          <dd id="mDuration" class="col-6 text-end">60-120 min</dd>
           <dt class="col-6">Cena</dt>
-          <dd id="mPrice" class="col-6 text-end fs-5 text-primary"></dd>
+          <dd id="mPrice" class="col-6 text-end fs-5 text-primary">4599</dd>
         </dl>
 
-        <button id="addToCart" class="btn btn-primary btn-lg w-100">Dodaj u korpu</button>
+        <button id="addToCart" data-id="druzina-ostrice" data-name="druzina-ostrice" data-price="4599"
+          class="btn btn-primary btn-lg w-100">
+          Dodaj u korpu</button>
         <div id="cartMsg" class="text-success small mt-2" style="min-height:1.2em;"></div>
       </div>
     </div>

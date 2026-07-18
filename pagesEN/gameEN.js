@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCart();
-    $('#cartMsg').text('✓ Dodato u korpu');
+    $('#cartMsg').text('✓ Added to cart');
   });
 
   updateCart();
@@ -76,9 +76,9 @@ $(document).ready(function() {
     
     if (reviews.length === 0) {
       $('#avgStars').html('');
-      $('#avgText').text('Još uvek nema ocena');
-      $('#summary').text('Budite prvi koji će oceniti ovu igru.');
-      $list.append('<p class="text-muted">Nema komentara.</p>');
+      $('#avgText').text('No ratings yet');
+      $('#summary').text('Be the first to rate this game.');
+      $list.append('<p class="text-muted">No comments.</p>');
       return;
     }
 
@@ -106,9 +106,9 @@ $(document).ready(function() {
       
       $('#avgStars').html(starsAvgHtml);
       $('#avgText').text(average.toFixed(1) + ' / 5 (' + countRating + ')');
-      $('#summary').text('Prosečna ocena: ' + average.toFixed(1) + ' od 5 — na osnovu ' + countRating + ' ocena i ' + reviews.length + ' recenzija.');
+      $('#summary').text('Average rating: ' + average.toFixed(1) + ' out of 5 — based on ' + countRating + ' ratings and ' + reviews.length + ' reviews.');
     } else {
-      $('#summary').text('Nema brojčanih ocena, samo komentari.');
+      $('#summary').text('No numerical ratings, only comments.');
     }
 
     for (var i = reviews.length - 1; i >= 0; i--) {
@@ -127,16 +127,16 @@ $(document).ready(function() {
       }
 
       var card = '<div class="card review-card mb-2">' +
-                    '<div class="card-body py-3">' +
-                      '<div class="d-flex justify-content-between align-items-center mb-1">' +
-                        '<strong>' + r.author + '</strong>' +
-                        '<small class="text-muted">' + r.date + '</small>' +
+                      '<div class="card-body py-3">' +
+                        '<div class="d-flex justify-content-between align-items-center mb-1">' +
+                          '<strong>' + r.author + '</strong>' +
+                          '<small class="text-muted">' + r.date + '</small>' +
+                        '</div>' +
+                        starsHtml +
+                        '<p class="mb-0">' + r.comment + '</p>' +
                       '</div>' +
-                      starsHtml +
-                      '<p class="mb-0">' + r.comment + '</p>' +
-                    '</div>' +
-                  '</div>';
-                  
+                    '</div>';
+                    
       $list.append(card);
     }
   }
@@ -146,18 +146,18 @@ $(document).ready(function() {
     var comment = $('#commentText').val().trim();
 
     if (author === '') {
-      author = 'Anonimni korisnik';
+      author = 'Anonymous';
     }
 
     if (selectedRating === 0 && comment === '') {
-      $('#formError').text('Unesite ocenu ili napišite komentar.');
+      $('#formError').text('Enter a rating or write a comment.');
       return;
     }
 
     var reviewsText = localStorage.getItem('reviews_' + gameId);
     var reviews = reviewsText ? JSON.parse(reviewsText) : [];
 
-    var todayDate = new Date().toLocaleDateString('sr-RS');
+    var todayDate = new Date().toLocaleDateString('en-US');
 
     reviews.push({
       rating: selectedRating,

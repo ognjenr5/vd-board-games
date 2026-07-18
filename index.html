@@ -1,15 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="rs">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drustvene igre</title>
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <h1>Drustvene igre</h1>
-    <h2>moje</h2>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="img/logo.svg" alt="Logo" width="75" height="60" class="d-inline-block align-text-center">
+        Kocka
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+        </span>
+      </button>
+      <div class="collapse navbar-collapse align-center" id="navbarNavDropdown">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Početna</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Galerija</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Katalog igara
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Porodične igre</a></li>
+              <li><a class="dropdown-item" href="#">Strateške igre</a></li>
+              <li><a class="dropdown-item" href="#">Zabavne igre</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Moj nalog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">O nama</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </body>
 
 </html>

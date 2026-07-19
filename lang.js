@@ -9,6 +9,10 @@ $(document).ready(function () {
         
         let newPage = id[1] + (id[2] == 'rs' ? '-en' : '') + '.html'
 
+        if (window.location.pathname.includes('/pagesRS/')) newPage = '../pagesEN/' + newPage
+        else if (window.location.pathname.includes('/pagesEN/')) newPage = '../pagesRS/' + newPage
+
+        console.log(newPage)
         window.location.href = newPage;
     });
 

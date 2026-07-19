@@ -10,6 +10,7 @@
   <script src="bootstrap.bundle.min.js"></script>
   <script src="jquery-4.0.0.min.js"></script>
   <script src="lang.js"></script>
+  <script src="./pagesRS/game.js"></script>
 </head>
 
 <body>
@@ -46,19 +47,31 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Moj nalog</a>
+            <a class="nav-link" href="./cart.html">Moj nalog</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./oNama.html">O nama</a>
           </li>
         </ul>
 
-        <div class="lang-check">
-          <span>RS</span>
-          <div class="form-check form-switch">
-            <input class="form-check-input lang-switch" id="lang-index-rs" type="checkbox" role="switch">
+        <div class="icons-cont">
+          <div class="lang-check">
+            <span>RS</span>
+            <div class="form-check form-switch">
+              <input class="form-check-input lang-switch" id="lang-index-rs" type="checkbox" role="switch">
+            </div>
+            <span>EN</span>
           </div>
-          <span>EN</span>
+
+          <div class="cart-cont">
+            <span class="position-relative">
+              <a href="cart.html">
+                <span class="cart-icon">🛒</span>
+              </a>
+              <span id="cartBadge"
+                class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+            </span>
+          </div>
         </div>
 
       </div>
@@ -71,7 +84,7 @@
         <h3 class="display-6">Akcije i popusti</h3>
         <div class="card-container">
           <div class="card">
-            <a href="./pagesRS/azulSRP.html">
+            <a href="./pagesRS/azul.html">
               <img src="./img/azul-1.jpg" class="card-img-top" alt="Azul">
             </a>
             <div class="card-body">
@@ -86,7 +99,7 @@
           </div>
 
           <div class="card">
-            <a href="./pagesRS/rizikoSRP.html">
+            <a href="./pagesRS/riziko.html">
               <img src="./img/riziko-1.jpg" class="card-img-top" alt="Riziko">
             </a>
             <div class="card-body">
@@ -101,7 +114,7 @@
           </div>
 
           <div class="card">
-            <a href="./pagesRS/avalonSRP.html">
+            <a href="./pagesRS/avalon.html">
               <img src="./img/avalon-1.jpg" class="card-img-top" alt="Avalon">
             </a>
             <div class="card-body">
@@ -169,7 +182,7 @@
 
           <div class="card">
             <span class="badge bg-success badge-img">NOVO</span>
-            <a href="./pagesRS/druzina-ostriceSRP.html">
+            <a href="./pagesRS/druzina-ostrice.html">
               <img src="./img/druzina-ostrice-1.jpg" class="card-img-top" alt="Druzina ostrice">
             </a>
             <div class="card-body">
@@ -184,7 +197,7 @@
 
           <div class="card">
             <span class="badge bg-success badge-img">NOVO</span>
-            <a href="./pagesRS/catanSRP.html">
+            <a href="./pagesRS/catan.html">
               <img src="./img/catan-1.jpg" class="card-img-top" alt="Catan">
             </a>
             <div class="card-body">

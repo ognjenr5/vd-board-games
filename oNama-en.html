@@ -10,6 +10,7 @@
     <script src="bootstrap.bundle.min.js"></script>
     <script src="jquery-4.0.0.min.js"></script>
     <script src="lang.js"></script>
+    <script src="./pagesRS/game.js"></script>
 </head>
 
 <body>
@@ -35,7 +36,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Katalog igara
+                            Game Catalog
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Family Games</a></li>
@@ -44,20 +45,31 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Account</a>
+                        <a class="nav-link" href="./cart-en.html">My Account</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="./oNama-en.html">About us</a>
                     </li>
                 </ul>
 
-                <div class="lang-check">
-                    <span>RS</span>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input lang-switch" id="lang-oNama-en" type="checkbox" role="switch"
-                            checked>
+                <div class="icons-cont">
+                    <div class="lang-check">
+                        <span>RS</span>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input lang-switch" id="lang-oNama-en" type="checkbox" role="switch"
+                                checked>
+                        </div>
+                        <span>EN</span>
                     </div>
-                    <span>EN</span>
+                    <div class="cart-cont">
+                        <span class="position-relative">
+                            <a href="cart-en.html">
+                                <span class="cart-icon">🛒</span>
+                            </a>
+                            <span id="cartBadge"
+                                class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+                        </span>
+                    </div>
                 </div>
 
             </div>

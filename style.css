@@ -179,3 +179,11 @@ main {
     display: flex;
     justify-content: center;
 }
+
+.icons-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 24px;
+    gap: 24px;
+}

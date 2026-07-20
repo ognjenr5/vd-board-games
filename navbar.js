@@ -114,7 +114,7 @@ function showNavbar() {
 
           <div class="cart-cont">
             <span class="position-relative">
-              <a href="${href('cart', lang)}">
+              <a href="${prefix}${href('cart', lang)}">
                 <span class="cart-icon">🛒</span>
               </a>
               <span id="cartBadge"

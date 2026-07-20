@@ -260,6 +260,20 @@ main.catalog {
     width: 95%;
 }
 
+.main-catalog .games-cont{
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-catalog .game-card img {
+    max-width: 320px;
+}
+
+.main-catalog a {
+    width: 80%;
+}
+
 .games-cont a {
     text-decoration: none;
     color: #111111
@@ -297,4 +311,12 @@ main.catalog {
     font-size: 24px;
     margin: 0;
     text-align: center;
+}
+
+nav.breadcrumb {
+    padding-left: 48px;
+}
+
+nav.breadcrumb a{
+    text-decoration: none;
 }

@@ -1,33 +1,27 @@
 const pages = [
-  { key: 'index',   rs: 'index.html',   en: 'index-en.html',   labelRs: 'Početna',       labelEn: 'Home' },
-  { key: 'gallery', rs: 'gallery.html', en: 'gallery-en.html', labelRs: 'Galerija',      labelEn: 'Gallery' },
-  { key: 'catalog', rs: 'catalog.html', en: 'catalog-en.html', labelRs: 'Katalog igara', labelEn: 'Game Catalog' },
-  { key: 'cart',    rs: 'cart.html',    en: 'cart-en.html',    labelRs: 'Moj nalog',     labelEn: 'My Account' },
-  { key: 'oNama',   rs: 'oNama.html',   en: 'oNama-en.html',   labelRs: 'O nama',        labelEn: 'About Us' },
+  { key: 'index',   rs: 'index.html',   en: 'index-en.html',   labelRs: 'Početna',       labelEn: 'Home',         path: [] },
+  { key: 'gallery', rs: 'gallery.html', en: 'gallery-en.html', labelRs: 'Galerija',      labelEn: 'Gallery',      path: ["index"] },
+  { key: 'catalog', rs: 'catalog.html', en: 'catalog-en.html', labelRs: 'Katalog igara', labelEn: 'Game Catalog',                          path: ["index"] },
+  { key: 'cart',    rs: 'cart.html',    en: 'cart-en.html',    labelRs: 'Moj nalog',     labelEn: 'My Account',   path: ["index"] },
+  { key: 'oNama',   rs: 'oNama.html',   en: 'oNama-en.html',   labelRs: 'O nama',        labelEn: 'About Us',     path: ["index"] },
 
-  { key: 'avalon',          rs: '../pagesRS/avalon.html',             en: '../pagesEN/avalon-en.html',              labelRs: 'Avalon',              labelEn: 'Avalon' },
-  { key: 'azul',            rs: '../pagesRS/azul.html',               en: '../pagesEN/azul-en.html',                labelRs: 'Azul',                labelEn: 'Azul' },
-  { key: 'catan',           rs: '../pagesRS/catan.html',              en: '../pagesEN/catan-en.html',               labelRs: 'Catan',               labelEn: 'Catan' },
-  { key: 'coveceNeLjutiSe', rs: '../pagesRS/coveceNeLjutiSe.html',    en: '../pagesEN/coveceNeLjutiSe-en.html',     labelRs: 'Čoveče ne ljuti se',  labelEn: 'Ludo' },
-  { key: 'druzinaOstrice',  rs: '../pagesRS/druzinaOstrice.html',     en: '../pagesEN/druzinaOstrice-en.html',      labelRs: 'Družina oštrice',     labelEn: 'Blade fellowship' },
-  { key: 'memory',          rs: '../pagesRS/memory.html',             en: '../pagesEN/memory-en.html',              labelRs: 'Igra memorije',       labelEn: 'Memory' },
-  { key: 'monopol',         rs: '../pagesRS/monopol.html',            en: '../pagesEN/monopol-en.html',             labelRs: 'Monopol',             labelEn: 'Monopoly' },
-  { key: 'riziko',          rs: '../pagesRS/riziko.html',             en: '../pagesEN/riziko-en.html',              labelRs: 'Riziko',              labelEn: 'Risk' },
-  { key: 'sah',             rs: '../pagesRS/sah.html',                en: '../pagesEN/sah-en.html',                 labelRs: 'Šah',                 labelEn: 'Chess' },
+  { key: 'avalon',          rs: '../pagesRS/avalon.html',             en: '../pagesEN/avalon-en.html',              labelRs: 'Avalon',              labelEn: 'Avalon',            path: ["index", "catalog", "family"] },
+  { key: 'azul',            rs: '../pagesRS/azul.html',               en: '../pagesEN/azul-en.html',                labelRs: 'Azul',                labelEn: 'Azul',              path: ["index", "catalog", "party"] },
+  { key: 'catan',           rs: '../pagesRS/catan.html',              en: '../pagesEN/catan-en.html',               labelRs: 'Catan',               labelEn: 'Catan',             path: ["index", "catalog", "strategy"] },
+  { key: 'coveceNeLjutiSe', rs: '../pagesRS/coveceNeLjutiSe.html',    en: '../pagesEN/coveceNeLjutiSe-en.html',     labelRs: 'Čoveče ne ljuti se',  labelEn: 'Ludo',              path: ["index", "catalog", "party"] },
+  { key: 'druzinaOstrice',  rs: '../pagesRS/druzinaOstrice.html',     en: '../pagesEN/druzinaOstrice-en.html',      labelRs: 'Družina oštrice',     labelEn: 'Blade fellowship',  path: ["index", "catalog", "party"] },
+  { key: 'memory',          rs: '../pagesRS/memory.html',             en: '../pagesEN/memory-en.html',              labelRs: 'Igra memorije',       labelEn: 'Memory',            path: ["index", "catalog", "family"] },
+  { key: 'monopol',         rs: '../pagesRS/monopol.html',            en: '../pagesEN/monopol-en.html',             labelRs: 'Monopol',             labelEn: 'Monopoly',          path: ["index", "catalog", "family"] },
+  { key: 'riziko',          rs: '../pagesRS/riziko.html',             en: '../pagesEN/riziko-en.html',              labelRs: 'Riziko',              labelEn: 'Risk',              path: ["index", "catalog", "strategy"] },
+  { key: 'sah',             rs: '../pagesRS/sah.html',                en: '../pagesEN/sah-en.html',                 labelRs: 'Šah',                 labelEn: 'Chess',             path: ["index", "catalog", "strategy"] },
 
-  { key: 'family',    rs: 'family.html',    en: 'family-en.html',     labelRs: 'Porodične igre',    labelEn: 'Family games' },
-  { key: 'party',     rs: 'party.html',     en: 'party-en.html',      labelRs: 'Zabavne igre',      labelEn: 'Party games' },
-  { key: 'strategy',  rs: 'strategy.html',  en: 'strategy-en.html',   labelRs: 'Strateške igre',    labelEn: 'Strategy games' }
-];
-
-const categories = [
-  { key: 'porodicne', rs: 'Porodične igre', en: 'Family Games' },
-  { key: 'strateske', rs: 'Strateške igre', en: 'Strategy Games' },
-  { key: 'zabavne',   rs: 'Zabavne igre',   en: 'Party Games' }
+  { key: 'family',    rs: '../catalogs/family.html',    en: '../catalogs/family-en.html',     labelRs: 'Porodične igre',    labelEn: 'Family games',    path: ["index", "catalog"] },
+  { key: 'party',     rs: '../catalogs/party.html',     en: '../catalogs/party-en.html',      labelRs: 'Zabavne igre',      labelEn: 'Party games',     path: ["index", "catalog"] },
+  { key: 'strategy',  rs: '../catalogs/strategy.html',  en: '../catalogs/strategy-en.html',   labelRs: 'Strateške igre',    labelEn: 'Strategy games',  path: ["index", "catalog"] }
 ];
 
 function isCatalogPage(key) {
-  return ['family', 'party', 'strategy'].includes(key)
+  return ['family', 'party', 'strategy', 'catalog'].includes(key)
 }
 
 function getCurrPage() {
@@ -64,6 +58,31 @@ function href(pageKey, lang) {
 function label(pageKey, lang) {
   const p = getPage(pageKey);
   return lang == 'en' ? p.labelEn : p.labelRs;
+}
+
+function addBreadCrumb() { 
+  const lang = document.documentElement.lang == 'en' ? 'en' : 'rs'
+  const page = getCurrPage()
+  const prefix = getPrefix()
+
+  $('nav.breadcrumb').remove()
+
+  console.log("page: " + page)
+
+  if (!page || page.path.length == 0) return
+
+  let breadcrumb = $('<nav class="breadcrumb" aria-label="breadcrumb"></nav>')
+  let inner = $('<ol class="breadcrumb"></ol>')
+
+  page.path.forEach(path => {
+    let li = $(`<li class="breadcrumb-item"><a href="${prefix}${isCatalogPage(path) ? 'catalogs/' : ''}${href(path, lang)}">${label(path, lang)}</a></li>`)
+    inner.append(li);
+  });
+
+  inner.append($(`<li class="breadcrumb-item active" aria-current="page">${label(page.key, lang)}</li>`))
+
+  breadcrumb.append(inner)
+  $(breadcrumb).insertAfter('nav.navbar');
 }
 
 function showNavbar() { 
@@ -114,7 +133,7 @@ function showNavbar() {
 
           <div class="cart-cont">
             <span class="position-relative">
-              <a href="${prefix}${href('cart', lang)}">
+              <a href="${prefix}${href('cart', lang)}" style="text-decoration: none">
                 <span class="cart-icon">🛒</span>
               </a>
               <span id="cartBadge"
@@ -128,9 +147,10 @@ function showNavbar() {
     </div>
     `
 
-    $('nav').html(navbarHTML);
+    $('nav.navbar').html(navbarHTML);
 }
 
 $(document).ready(function () {
     showNavbar()
+    addBreadCrumb()
 });

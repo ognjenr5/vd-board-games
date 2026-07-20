@@ -28,6 +28,21 @@
                     <option value="priceDesc">Price ascending</option>
                 </select>
             </div>
+
+            <div class="filter-searches-cont">
+                <div class="filter-cont price-cont">
+                    <span id="price-range-display" class="text-center"></span>
+                    <div class="position-relative price-range-cont">
+                        <input type="range" class="price-range form-range" id="price-range-low" step="1">
+                        <input type="range" class="price-range form-range" id="price-range-high" step="1">
+                    </div>
+                </div>
+
+                <div class="filter-cont">
+                    <input type="text" name="search" id="search" class="form-control search-input"
+                        placeholder="Serach...">
+                </div>
+            </div>
         </div>
         <div class="games-cont"></div>
     </main>

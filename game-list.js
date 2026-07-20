@@ -74,6 +74,7 @@ let games = [
 ]
 
 const lang = document.documentElement.lang == 'en' ? 'en' : 'rs'
+let searchVal = '';
 
 function createGameCard(game) {
     const link = `../pages${lang.toUpperCase()}/${game.id}${lang == 'en' ? '-en' : ''}.html`
@@ -118,8 +119,24 @@ function displayCards(games) {
     });
 }
 
-function getSortOption(sortBy) {
-    
+function search(games) {
+    $('.games-cont').empty();
+    let searchOption = $('#search-by').val()
+    return games.filter(g => lang == 'en' ? g.name_en.toLowerCase().includes(searchVal) : g.name_rs.toLowerCase().includes(searchVal))
+}
+
+function priceFilter(games) {
+    let low = parseInt($('#price-range-low').val())
+    let high =  parseInt($('#price-range-high').val())
+
+    if (low > high) {
+        let tmp = low
+        low = high
+        high = tmp
+    }
+    $('#price-range-display').text(`${low} - ${high} RSD`)
+
+    return games.filter(g => g.price >= low && g.price <= high)
 }
 
 $(document).ready(function () {
@@ -131,6 +148,25 @@ $(document).ready(function () {
 
     $('#sort-by').on('change', function() {
         sortOption = sortOptions[$(this).val()]
-        displayCards(gamesFiltered)
+        displayCards(search(priceFilter(gamesFiltered)))
+    })
+
+    $('#search').on('input', function() {
+        searchVal = $(this).val()
+        displayCards(search(priceFilter(gamesFiltered)))
+    })
+
+    let minPrice = gamesFiltered.reduce((minElem, curr) => curr.price < minElem.price ? curr : minElem).price
+    let maxPrice = gamesFiltered.reduce((maxElem, curr) => curr.price > maxElem.price ? curr : maxElem).price
+    $('#price-range-display').text(`${minPrice} - ${maxPrice} RSD`)
+
+    $('.price-range').attr('min', minPrice)
+    $('.price-range').attr('max', maxPrice)
+
+    $('#price-range-low').attr('value', minPrice)
+    $('#price-range-high').attr('value', maxPrice)
+
+    $('.price-range').on('input', function() {
+        displayCards(search(priceFilter(gamesFiltered)))
     })
 });

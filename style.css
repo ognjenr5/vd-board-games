@@ -233,6 +233,7 @@ main.catalog {
 .filters {
     display: flex;
     width: 80%;
+    justify-content: space-between;
 }
 
 .filter-cont {
@@ -257,7 +258,7 @@ main.catalog {
     background-color: var(--section-odd-color);
     display: flex;
     border-radius: 12px;
-    width: 95%;
+    width: 100%;
 }
 
 .main-catalog .games-cont{
@@ -337,4 +338,49 @@ nav.breadcrumb a{
     width: 80%;
     padding: 36px 0px 0px;
     margin: 0 auto;
+}
+
+.price-range-cont {
+    width: 200px;
+    position: relative;
+    height: 20px;
+}
+
+.price-range {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    pointer-events: none;
+}
+
+.price-range:last-of-type::-webkit-slider-runnable-track {
+    background: transparent;
+}
+
+.price-range:last-of-type::-moz-range-track {
+    background: transparent;
+}
+
+.price-range::-webkit-slider-thumb {
+    pointer-events: auto;
+}
+
+.price-range::-moz-range-thumb {
+    pointer-events: auto;
+}
+
+.filter-cont.price-cont {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-cont span {
+    width: 100%;
+}
+
+.filter-searches-cont {
+    display: flex;
+    gap: 36px;
 }

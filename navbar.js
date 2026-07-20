@@ -150,7 +150,25 @@ function showNavbar() {
     $('nav.navbar').html(navbarHTML);
 }
 
+const footerText = {
+  rs: 'Copyright 2026, Огњен Ракић и Лука Нешић, Одсек за софтверско инжењерство Електротехничког факултета Универзитета у Београду',
+  en: 'Copyright 2026, Ognjen Rakic i Luka Nesic, Department of Software Engineering, School of Electrical Engineering, University of Belgrade'
+};
+
+function showFooter() {
+  const lang = document.documentElement.lang == 'en' ? 'en' : 'rs';
+  $('body').append(`
+    <footer class="site-footer">
+      <div class="container-fluid text-center py-3">
+        <small><i>${footerText[lang]}</i></small>
+      </div>
+    </footer>
+  `);
+}
+
+
 $(document).ready(function () {
     showNavbar()
     addBreadCrumb()
+    showFooter()
 });

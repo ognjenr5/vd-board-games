@@ -83,7 +83,9 @@ function createGameCard(game) {
     let gameCardHTML = `
             <a href="${link}">
                 <div class="game-card">
-                    <img src="${imgLink}">
+                    <div class="game-img-cont">
+                        <img src="${imgLink}" class="game-img">
+                    </div>
                     <div class="game-card-body">
                         <div class="game-card-header">
                             <h5 class="display-6 game-name">${lang == 'en' ? game.name_en : game.name_rs}</h5>

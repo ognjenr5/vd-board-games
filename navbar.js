@@ -166,9 +166,15 @@ function showFooter() {
   `);
 }
 
+function updateBadge() {
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  $('#cartBadge').text(cart.reduce((s, i) => s + i.qty, 0));
+}
+
 
 $(document).ready(function () {
     showNavbar()
     addBreadCrumb()
     showFooter()
+    updateBadge()
 });

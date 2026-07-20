@@ -326,3 +326,15 @@ nav.breadcrumb a{
   margin-top: 3rem;
   color: #6c757d;
 }
+
+.qty-minus{
+    background-color: rgb(242, 88, 88);
+    font-weight: bold;
+    color: #111111;
+}
+.cart-list,
+.cart-history {
+    width: 80%;
+    padding: 36px 0px 0px;
+    margin: 0 auto;
+}

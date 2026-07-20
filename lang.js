@@ -7,7 +7,7 @@ $(document).ready(function () {
         let lang = getLang()
         let id = $(this).attr('id').split('-')
         
-        let newPage = id[1] + (id[2] == 'rs' ? '-en' : '') + '.html'
+        let newPage = id[1] + (id[id.length - 1] == 'rs' ? '-en' : '') + '.html'
 
         if (window.location.pathname.includes('/pagesRS/')) newPage = '../pagesEN/' + newPage
         else if (window.location.pathname.includes('/pagesEN/')) newPage = '../pagesRS/' + newPage

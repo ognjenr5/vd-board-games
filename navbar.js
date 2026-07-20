@@ -14,6 +14,10 @@ const pages = [
   { key: 'monopol',         rs: '../pagesRS/monopol.html',            en: '../pagesEN/monopol-en.html',             labelRs: 'Monopol',             labelEn: 'Monopoly' },
   { key: 'riziko',          rs: '../pagesRS/riziko.html',             en: '../pagesEN/riziko-en.html',              labelRs: 'Riziko',              labelEn: 'Risk' },
   { key: 'sah',             rs: '../pagesRS/sah.html',                en: '../pagesEN/sah-en.html',                 labelRs: 'Šah',                 labelEn: 'Chess' },
+
+  { key: 'family',    rs: 'family.html',    en: 'family-en.html',     labelRs: 'Porodične igre',    labelEn: 'Family games' },
+  { key: 'party',     rs: 'party.html',     en: 'party-en.html',      labelRs: 'Zabavne igre',      labelEn: 'Party games' },
+  { key: 'strategy',  rs: 'strategy.html',  en: 'strategy-en.html',   labelRs: 'Strateške igre',    labelEn: 'Strategy games' }
 ];
 
 const categories = [
@@ -21,6 +25,10 @@ const categories = [
   { key: 'strateske', rs: 'Strateške igre', en: 'Strategy Games' },
   { key: 'zabavne',   rs: 'Zabavne igre',   en: 'Party Games' }
 ];
+
+function isCatalogPage(key) {
+  return ['family', 'party', 'strategy'].includes(key)
+}
 
 function getCurrPage() {
   let file = window.location.pathname.split('/').pop() || 'index.html'
@@ -31,7 +39,7 @@ function getCurrPage() {
 
 function getPrefix() {
   const path = window.location.pathname;
-  return (path.includes('/pagesRS/') || path.includes('/pagesEN/')) ? '../' : '';
+  return (path.includes('/pagesRS/') || path.includes('/pagesEN/') || path.includes('/catalogs/')) ? '../' : '';
 }
 
 function navLink(currPage, linkPage, lang) {
@@ -82,13 +90,13 @@ function showNavbar() {
           ${navLink(page, getPage('index'), lang)}
           ${navLink(page, getPage('gallery'), lang)}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle ${isCatalogPage(page.key) ? "active" : ""}" ${isCatalogPage(page.key) ? 'aria-current="page"' : ''} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               ${label('catalog', lang)}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Porodične igre</a></li>
-              <li><a class="dropdown-item" href="#">Strateške igre</a></li>
-              <li><a class="dropdown-item" href="#">Zabavne igre</a></li>
+              <li><a class="dropdown-item" href="${prefix}catalogs/${href('family', lang)}">${label('family', lang)}</a></li>
+              <li><a class="dropdown-item" href="${prefix}catalogs/${href('strategy', lang)}">${label('strategy', lang)}</a></li>
+              <li><a class="dropdown-item" href="${prefix}catalogs/${href('party', lang)}">${label('party', lang)}</a></li>
             </ul>
           </li>
           ${navLink(page, getPage('cart'), lang)}

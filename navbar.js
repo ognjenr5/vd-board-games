@@ -67,8 +67,6 @@ function addBreadCrumb() {
 
   $('nav.breadcrumb').remove()
 
-  console.log("page: " + page)
-
   if (!page || page.path.length == 0) return
 
   let breadcrumb = $('<nav class="breadcrumb" aria-label="breadcrumb"></nav>')

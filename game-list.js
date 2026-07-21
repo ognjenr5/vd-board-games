@@ -122,7 +122,6 @@ function displayCards(games) {
 }
 
 function search(games) {
-    $('.games-cont').empty();
     let searchOption = $('#search-by').val()
     return games.filter(g => lang == 'en' ? g.name_en.toLowerCase().includes(searchVal) : g.name_rs.toLowerCase().includes(searchVal))
 }
@@ -139,6 +138,10 @@ function priceFilter(games) {
     $('#price-range-display').text(`${low} - ${high} RSD`)
 
     return games.filter(g => g.price >= low && g.price <= high)
+}
+
+function getFilteredGames() {
+    return search(priceFilter(games.filter(g => g.category == $('body').attr('id')))).sort(sortOption);
 }
 
 $(document).ready(function () {

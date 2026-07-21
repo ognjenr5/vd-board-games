@@ -5,7 +5,9 @@ let games = [
         name_rs: "Avalon",
         price: 2799,
         rating: 0,
-        category: 'family'
+        category: 'family',
+        desc_en: 'A social deduction game of hidden loyalty set in the court of King Arthur. Loyal servants of Arthur fight to defeat the minions of Mordred hiding among them.',
+        desc_rs: 'Drustvena igra skrivene lojalnosti smestena na dvoru kralja Artura. Verni sledbenici Artura bore se da poraze Mordredove sluge skrivene medju njima.'
     },
     {
         id: "azul",
@@ -13,7 +15,9 @@ let games = [
         name_rs: "Azul",
         price: 3999,
         rating: 0,
-        category: 'party'
+        category: 'party',
+        desc_en: 'An abstract tile-laying game where players draft colourful tiles to decorate the walls of the Royal Palace of Evora. Plan carefully to score the most points.',
+        desc_rs: 'Apstraktna igra slaganja plocica u kojoj igraci biraju sarene plocice da ukrase zidove Kraljevske palate u Evori. Planirajte pazljivo da osvojite najvise poena.'
     },
     {
         id: "catan",
@@ -21,23 +25,29 @@ let games = [
         name_rs: "Catan",
         price: 3499,
         rating: 0,
-        category: 'strategy'
+        category: 'strategy',
+        desc_en: 'A strategy game of trading and building settlements on the island of Catan. Gather resources, build roads and cities, and outwit your opponents.',
+        desc_rs: 'Strateska igra trgovine i izgradnje naselja na ostrvu Catan. Skupljajte sirovine, gradite puteve i gradove i nadmudrite protivnike.'
     },
     {
-        id: "covece-ne-ljuti-se",
+        id: "coveceNeLjutiSe",
         name_en: "Ludo",
         name_rs: "Čoveče ne ljuti se",
         price: 999,
         rating: 0,
-        category: 'party'
+        category: 'party',
+        desc_en: 'A classic family race game. Move your four pawns around the board and be the first to bring them all home, knocking out opponents along the way.',
+        desc_rs: 'Klasicna porodicna igra trke. Pomerajte svoje cetiri figure oko table i budite prvi koji ce ih sve dovesti kuci, izbacujuci protivnike usput.'
     },
     {
-        id: "druzina-ostrice",
+        id: "druzinaOstrice",
         name_en: "Blade Fellowship",
         name_rs: "Družina oštrice",
         price: 4599,
         rating: 0,
-        category: 'party'
+        category: 'party',
+        desc_en: 'A cooperative adventure game where a fellowship of heroes journeys across a perilous land, battling foes and uncovering secrets together.',
+        desc_rs: 'Kooperativna avanturisticka igra u kojoj druzina junaka putuje kroz opasnu zemlju, boreci se sa neprijateljima i otkrivajuci tajne zajedno.'
     },
     {
         id: "memory",
@@ -45,7 +55,9 @@ let games = [
         name_rs: "Memorija",
         price: 799,
         rating: 0,
-        category: 'family'
+        category: 'family',
+        desc_en: 'A simple and fun memory game for all ages. Flip cards two at a time and find matching pairs. The player with the most pairs wins.',
+        desc_rs: 'Jednostavna i zabavna igra memorije za sve uzraste. Okrećite karte dve po dve i pronalazite parove. Igrač sa najviše pronađenih parova pobeđuje.'
     },
     {
         id: "monopol",
@@ -53,7 +65,9 @@ let games = [
         name_rs: "Monopol",
         price: 2999,
         rating: 0,
-        category: 'family'
+        category: 'family',
+        desc_en: 'The classic game of buying, renting and trading properties. Bankrupt your opponents and become the wealthiest player to win.',
+        desc_rs: 'Klasicna igra kupovine, iznajmljivanja i trgovine nekretninama. Dovedite protivnike do bankrota i postanite najbogatiji igrac da biste pobedili.'
     },
     {
         id: "riziko",
@@ -61,7 +75,9 @@ let games = [
         name_rs: "Riziko",
         price: 3299,
         rating: 0,
-        category: 'strategy'
+        category: 'strategy',
+        desc_en: 'A game of global domination and strategy. Command your armies, conquer territories and eliminate your rivals to rule the world.',
+        desc_rs: 'Igra globalne dominacije i strategije. Komandujte svojim armijama, osvajajte teritorije i eliminisite rivale da biste zavladali svetom.'
     },
     {
         id: "sah",
@@ -69,7 +85,9 @@ let games = [
         name_rs: "Šah",
         price: 1499,
         rating: 0,
-        category: 'strategy'
+        category: 'strategy',
+        desc_en: 'The timeless game of strategy for two players. Outmanoeuvre your opponent and checkmate their king on the 64-square board.',
+        desc_rs: 'Bezvremenska strateska igra za dva igraca. Nadmudrite protivnika i matirajte njegovog kralja na tabli od 64 polja.'
     }
 ]
 
@@ -91,11 +109,8 @@ function createGameCard(game) {
                             <h5 class="display-6 game-name">${lang == 'en' ? game.name_en : game.name_rs}</h5>
                             <p class="game-price text-uppercase">${game.price} RSD</p>
                         </div>
-                        <small class="text-muted game-description">
-                            Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Eveniet totam non voluptas similique. Debitis impedit explicabo reiciendis
-                            doloremque, sit rerum magnam dolorem autem, sequi cumque ducimus unde suscipit facere
-                            quo.
+                        <small class="text-muted game-description fs-5">
+                           ${lang == 'en' ? game.desc_en : game.desc_rs} 
                         </small>
                     </div>
                 </div>
@@ -161,8 +176,8 @@ $(document).ready(function () {
         displayCards(search(priceFilter(gamesFiltered)))
     })
 
-    let minPrice = gamesFiltered.reduce((minElem, curr) => curr.price < minElem.price ? curr : minElem).price
-    let maxPrice = gamesFiltered.reduce((maxElem, curr) => curr.price > maxElem.price ? curr : maxElem).price
+    let minPrice = Math.min(...gamesFiltered.map(g=>g.price))
+    let maxPrice = Math.max(...gamesFiltered.map(g=>g.price))
     $('#price-range-display').text(`${minPrice} - ${maxPrice} RSD`)
 
     $('.price-range').attr('min', minPrice)

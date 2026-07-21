@@ -119,8 +119,9 @@ body {
 }
 
 .sales .card,
-.new-games .card {
-    height: 480px;
+.new-games .card,
+.best-games .card {
+    min-height: 480px;
     padding: 0px 24px;
     width: 20rem;
 }
@@ -133,6 +134,12 @@ body {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+}
+
+#top-3-games .card-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .home .card-body .card-text:last-of-type {
@@ -313,6 +320,10 @@ main.catalog {
     nav.breadcrumb {
         padding-left: 0px;
     }
+
+    .game-card .game-card-body {
+    width: 100%;
+    }
 }
 
 .main-catalog .games-cont{
@@ -349,6 +360,7 @@ main.catalog {
 
 .game-card-body {
     padding: 24px;
+    width: 75%;
 }
 
 .game-card-header {

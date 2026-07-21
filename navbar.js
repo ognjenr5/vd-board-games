@@ -155,11 +155,37 @@ const footerText = {
   en: 'Copyright 2026, Ognjen Rakic i Luka Nesic, Department of Software Engineering, School of Electrical Engineering, University of Belgrade'
 };
 
+const bannerTitle = {
+  rs: 'Партнерски сајтови',
+  en: 'Partner sites'
+};
+
+const banners = [
+  { href: 'https://boardgamegeek.com',        label: 'BoardGameGeek',  img: 'img/bgg.png' },
+  { href: 'https://www.gmtgames.com/',        label: 'Gmt games',      img: 'img/gmt.png' },
+  { href: 'https://www.asmodee.com',          label: 'Asmodee',        img: 'img/asmodee.png' },
+  { href: 'https://wsbgvegas.com/',           label: 'WSBG',           img: 'img/wsbg.png' }
+];
+
 function showFooter() {
   const lang = document.documentElement.lang == 'en' ? 'en' : 'rs';
+  const prefix = getPrefix();
+
+  const bannersHTML = banners.map(b => `
+    <a class="footer-banner" href="${b.href}" target="_blank" rel="noopener">
+      <img src="${prefix}${b.img}" alt="${b.label}" height="40">
+    </a>
+  `).join('');
+
   $('body').append(`
     <footer class="site-footer">
       <div class="container-fluid text-center py-3">
+        <div class="footer-banners">
+          <span class="footer-banners-title">${bannerTitle[lang]}</span>
+          <div class="footer-banners-list">
+            ${bannersHTML}
+          </div>
+        </div>
         <small><i>${footerText[lang]}</i></small>
       </div>
     </footer>

@@ -426,3 +426,30 @@ nav.breadcrumb a{
     justify-content: center;
     flex-grow: 1;
 }
+
+.footer-banners {
+  margin-bottom: 1rem;
+}
+
+.footer-banners-title {
+  display: block;
+  font-size: .85rem;
+  opacity: .7;
+  margin-bottom: .5rem;
+}
+
+.footer-banners-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer-banner img {
+  opacity: .7;
+  transition: opacity .2s;
+}
+
+.footer-banner img:hover {
+  opacity: 1;
+}

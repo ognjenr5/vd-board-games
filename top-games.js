@@ -56,6 +56,7 @@ function addTopGame(gameRating) {
 
 $(document).ready(function () {
     getRatings()
+    $('#top-3-games').empty();
     getTop3().forEach(gameRating => {
         addTopGame(gameRating)
     });
